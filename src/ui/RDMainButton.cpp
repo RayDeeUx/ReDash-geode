@@ -15,7 +15,7 @@ bool RDMainButton::init(CCPoint position, CCSize size, std::string id, float sca
 
     if (!CCMenuItemSpriteExtra::init(spriteNode, nullptr, this, menu_selector(RDMainButton::onPlay))) return false;
 
-    auto background = CCScale9Sprite::create("GJ_square02.png");
+    auto background = geode::NineSlice::create("GJ_square02.png");
     background->setContentSize(size * scale);
     background->setPosition({ size.width/2*scale, size.height/2*scale });
     background->setID("background");
@@ -219,7 +219,7 @@ bool RDMainButton::init(CCPoint position, CCSize size, std::string id, float sca
     progressBar->setID("progress-bar");
 
     auto clippingNode = CCClippingNode::create();
-    auto stencil = CCScale9Sprite::create("square02_001.png");
+    auto stencil = geode::NineSlice::create("square02_001.png");
 	stencil->setAnchorPoint({ 0, 0.5f });
 	stencil->setContentWidth(progressBar->getContentWidth());
     stencil->setContentHeight(100);

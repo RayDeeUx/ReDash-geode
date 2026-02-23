@@ -4,19 +4,19 @@
 bool RDButton::init(CCObject* target, std::string title, std::vector<std::string> description, std::string sprite, float spriteScale, cocos2d::SEL_MenuHandler callback, std::string id) {
     auto spriteNode = CCNode::create();
 
-	auto buttonSpr1 = CCScale9Sprite::create("longButtonHalf-1.png"_spr);
+	auto buttonSpr1 = geode::NineSlice::create("longButtonHalf-1.png"_spr);
 	buttonSpr1->setContentSize({150.f, 35.f});
 	buttonSpr1->setPosition(ccp(75.f, 52.f));
 	buttonSpr1->setID("bg-sprite-1");
 	spriteNode->addChild(buttonSpr1);
 
-	auto buttonSpr2 = CCScale9Sprite::create("longButtonHalf-2.png"_spr);
+	auto buttonSpr2 = geode::NineSlice::create("longButtonHalf-2.png"_spr);
 	buttonSpr2->setContentSize({150.f, 35.f});
 	buttonSpr2->setPosition(ccp(75.f, 17.f));
 	buttonSpr2->setID("bg-sprite-2");
 	spriteNode->addChild(buttonSpr2);
 
-	// auto buttonSpr = CCScale9Sprite::create("RD_longButton.png"_spr);
+	// auto buttonSpr = geode::NineSlice::create("RD_longButton.png"_spr);
 	// buttonSpr->setContentSize({150.f, 70.f});
 	// buttonSpr->setPosition(ccp(75.f, 35.f));
 	// spriteNode->addChild(buttonSpr, -1);

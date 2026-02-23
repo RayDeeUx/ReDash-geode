@@ -1,7 +1,7 @@
 #include "MiniButtons.hpp"
 
 bool MiniButton::init(std::string iconSprite, float iconScale, ccColor3B color, CCObject* target, cocos2d::SEL_MenuHandler callback, std::string id) {
-    auto bgSprite = CCScale9Sprite::create("RD_square.png"_spr);
+    auto bgSprite = geode::NineSlice::create("RD_square.png"_spr);
     bgSprite->setScale(0.3f);
     bgSprite->setColor(color);
     bgSprite->setID("bg-sprite");
@@ -32,7 +32,7 @@ MiniButton* MiniButton::create(std::string iconSprite, float iconScale, ccColor3
 }
 
 bool MiniRDButton::init(std::string iconSprite, float iconScale, ccColor3B color, CCObject* target, cocos2d::SEL_MenuHandler callback, std::string id) {
-    auto bgSprite = CCScale9Sprite::create("RD_square.png"_spr);
+    auto bgSprite = geode::NineSlice::create("RD_square.png"_spr);
     bgSprite->setContentWidth(bgSprite->getContentWidth() / 80 * 150);
     bgSprite->setScale(0.3f);
     bgSprite->setColor(color);

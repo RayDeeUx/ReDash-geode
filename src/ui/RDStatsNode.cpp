@@ -36,7 +36,7 @@ bool RDStatsNode::init(std::string sprite, std::string string, std::string id) {
         this->addChild(bg0b, 0);
     }
 
-    auto bg1 = CCScale9Sprite::create("statsNodeHalf-1.png"_spr);
+    auto bg1 = geode::NineSlice::create("statsNodeHalf-1.png"_spr);
     bg1->setAnchorPoint({ 0, 0.5f });
     bg1->setScale(0.8f);
     bg1->setColor({ 0, 0, 0 });

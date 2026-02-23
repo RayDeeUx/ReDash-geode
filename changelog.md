@@ -1,4 +1,7 @@
 # Overcharged Main Menu Changelog
+## v1.2.1
+- GD 2.2081 support
+- Bugfixes...
 ## v1.2.0
 - GD 2.2074 support
 - Events levels support

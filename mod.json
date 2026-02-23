@@ -1,12 +1,12 @@
 {
-	"geode": "4.10.0",
+	"geode": "5.0.0",
 	"gd": {
-		"win": "2.2074",
-		"mac": "2.2074",
-		"ios": "2.2074",
-		"android": "2.2074"
+		"win": "2.2081",
+		"mac": "2.2081",
+		"ios": "2.2081",
+		"android": "2.2081"
 	},
-	"version": "v1.2.0",
+	"version": "v1.2.1",
 	"id": "ninxout.redash",
 	"name": "Overcharged Main Menu",
 	"developers": [
@@ -19,8 +19,7 @@
 		"source": "https://github.com/Weebifying/ReDash-geode"
 	},
 	"dependencies": {
-		"alphalaneous.happy_textures": ">=v2.0.7",
-		"alphalaneous.pages_api": ">=1.1.3"
+		"raydeeux.pages_api": ">=1.4.15"
 	},
 	"resources": {
 		"spritesheets": {

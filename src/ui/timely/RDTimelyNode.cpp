@@ -29,7 +29,7 @@ bool RDTimelyNode::init(CCSize size, std::string id, float scale) {
     // titleSprite->setID("title-sprite");
     // node->addChild(titleSprite, 1);
 
-    auto innerBG = CCScale9Sprite::create("square02b_001.png");
+    auto innerBG = geode::NineSlice::create("square02b_001.png");
     innerBG->setScale(0.5f);
     innerBG->setContentSize({ size.width*2 - 30.f, size.height / 1.16f });
     innerBG->setPosition({ size.width/2, size.height/2 });
@@ -58,7 +58,7 @@ bool RDTimelyNode::init(CCSize size, std::string id, float scale) {
     m_loadingCircle = loadingCircle;
 
 
-    auto bonusBG = CCScale9Sprite::create("GJ_square02.png");
+    auto bonusBG = geode::NineSlice::create("GJ_square02.png");
     bonusBG->setScale(0.5f);
     bonusBG->setContentSize({ size.width/2.5f, size.height/5.5f });
     bonusBG->setContentSize(bonusBG->getContentSize() * 2);

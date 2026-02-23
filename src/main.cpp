@@ -324,7 +324,7 @@ class $modify(CrazyLayer, MenuLayer) {
 
 		// background for the menu on the right (the one with the Geode and settings buttons)
 
-		CCScale9Sprite* bottomMenuBG = CCScale9Sprite::create("square02b_001.png");
+		geode::NineSlice* bottomMenuBG = geode::NineSlice::create("square02b_001.png");
 		bottomMenuBG->setID("bottom-menu-bg"_spr);
 		bottomMenuBG->setColor({0,0,0});
 		bottomMenuBG->setOpacity(100);

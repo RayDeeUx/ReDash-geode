@@ -34,7 +34,7 @@ bool RDMainButton::init(CCPoint position, CCSize size, std::string id, float sca
     spriteNode->addChild(titleSprite, 1);
 
 
-    auto innerBG = CCScale9Sprite::create("square02b_001.png");
+    auto innerBG = geode::NineSlice::create("square02b_001.png");
     innerBG->setScale(0.5f);
     innerBG->setContentSize({ size.width - 15.f, size.height / 2.32f });
     innerBG->setContentSize(innerBG->getContentSize() * 2);

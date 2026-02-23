@@ -153,7 +153,7 @@ class $modify(MyGLM, GameLevelManager) {
             
             if (tag == "daily_state") {
                 if (this->m_activeDailyID == 0) {
-                    this->downloadLevel(-1, false);
+                    this->downloadLevel(-1, false, 0);
                 }
 
                 Variables::DailyLeft = timeLeft;
@@ -162,7 +162,7 @@ class $modify(MyGLM, GameLevelManager) {
                 RD_HANDLE_GET_DAILY(RDDailyNode, "daily-node", this->m_dailyID, this->m_activeDailyID);
             } else if (tag == "weekly_state") {
                 if (this->m_activeWeeklyID == 0) {
-                    this->downloadLevel(-2, false);
+                    this->downloadLevel(-2, false, 0);
                 }
                 
                 Variables::WeeklyLeft = timeLeft;
@@ -171,7 +171,7 @@ class $modify(MyGLM, GameLevelManager) {
                 RD_HANDLE_GET_DAILY(RDWeeklyNode, "weekly-node", this->m_weeklyID, this->m_activeWeeklyID);
             } else if (tag == "event_state") {
                 if (this->m_activeEventID == 0) {
-                    this->downloadLevel(-3, false);
+                    this->downloadLevel(-3, false, 0);
                 }
 
                 Variables::EventLeft = timeLeft;

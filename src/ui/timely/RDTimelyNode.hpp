@@ -7,7 +7,7 @@ using namespace geode::prelude;
 
 class RDTimelyNode : public CCNode {
 public:
-    EventListener<web::WebTask> m_listener;
+    async::TaskHolder<WebResponse> m_listener;
 
     GJGameLevel* m_currentLevel;
 

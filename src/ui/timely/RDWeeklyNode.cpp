@@ -57,7 +57,7 @@ bool RDWeeklyNode::init(CCSize size, std::string id, float scale) {
     if (auto level = GLM->getSavedDailyLevel(GLM->m_activeWeeklyID)) {
         RDWeeklyNode::setupLevelMenu(level);
     } else {
-        GLM->downloadLevel(-2, false);
+        GLM->downloadLevel(-2, false, 0);
         m_loadingCircle->setVisible(true);
         m_bonusMenu->setVisible(false);
     }
@@ -119,7 +119,7 @@ void RDWeeklyNode::onSkipLevel(CCObject* sender) {
                 m_loadingCircle->setVisible(true);
                 m_menu->removeAllChildren();
                 m_bonusMenu->setVisible(false);
-                GameLevelManager::get()->downloadLevel(-2, false);
+                GameLevelManager::get()->downloadLevel(-2, false, 0);
                 Mod::get()->setSavedValue("claimed-weekly", false);
             }
         }
@@ -131,7 +131,7 @@ void RDWeeklyNode::onReload(CCObject* sender) {
     m_menu->removeAllChildren();
 
     if (Variables::WeeklyLeft == 0) GameLevelManager::get()->getGJDailyLevelState(GJTimedLevelType::Weekly);
-    GameLevelManager::get()->downloadLevel(-2, false);
+    GameLevelManager::get()->downloadLevel(-2, false, 0);
 }
 
 void RDWeeklyNode::onTheSafe(CCObject* sender) {

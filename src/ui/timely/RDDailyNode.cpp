@@ -63,7 +63,7 @@ bool RDDailyNode::init(CCSize size, std::string id, float scale) {
     if (auto level = GLM->getSavedDailyLevel(GLM->m_activeDailyID)) {
         RDDailyNode::setupLevelMenu(level);
     } else {
-        GLM->downloadLevel(-1, false);
+        GLM->downloadLevel(-1, false, 0);
         m_loadingCircle->setVisible(true);
         m_bonusMenu->setVisible(false);
     }
@@ -125,7 +125,7 @@ void RDDailyNode::onSkipLevel(CCObject* sender) {
                 m_loadingCircle->setVisible(true);
                 m_menu->removeAllChildren();
                 m_bonusMenu->setVisible(false);
-                GameLevelManager::get()->downloadLevel(-1, false);
+                GameLevelManager::get()->downloadLevel(-1, false, 0);
                 Mod::get()->setSavedValue("claimed-daily", false);
             }
         }
@@ -137,7 +137,7 @@ void RDDailyNode::onReload(CCObject* sender) {
     m_menu->removeAllChildren();
 
     if (Variables::DailyLeft == 0) GameLevelManager::get()->getGJDailyLevelState(GJTimedLevelType::Daily);
-    GameLevelManager::get()->downloadLevel(-1, false);
+    GameLevelManager::get()->downloadLevel(-1, false, 0);
 }
 
 void RDDailyNode::onTheSafe(CCObject* sender) {

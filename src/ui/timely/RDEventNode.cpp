@@ -41,7 +41,7 @@ bool RDEventNode::init(CCSize size, std::string id, float scale) {
     if (auto level = GLM->getSavedDailyLevel(GLM->m_activeEventID)) {
         RDEventNode::setupLevelMenu(level);
     } else {
-        GLM->downloadLevel(-3, false);
+        GLM->downloadLevel(-3, false, 0);
         m_loadingCircle->setVisible(true);
         m_bonusMenu->setVisible(false);
     }
@@ -83,7 +83,7 @@ void RDEventNode::onSkipLevel(CCObject* sender) {
                 m_loadingCircle->setVisible(true);
                 m_menu->removeAllChildren();
                 m_bonusMenu->setVisible(false);
-                GameLevelManager::get()->downloadLevel(-3, false);
+                GameLevelManager::get()->downloadLevel(-3, false, 0);
                 Mod::get()->setSavedValue("claimed-event", false);
             }
         }
@@ -95,7 +95,7 @@ void RDEventNode::onReload(CCObject* sender) {
     m_menu->removeAllChildren();
 
     if (Variables::EventLeft == 0) GameLevelManager::get()->getGJDailyLevelState(GJTimedLevelType::Event);
-    GameLevelManager::get()->downloadLevel(-3, false);
+    GameLevelManager::get()->downloadLevel(-3, false, 0);
 }
 
 void RDEventNode::onTheSafe(CCObject* sender) {

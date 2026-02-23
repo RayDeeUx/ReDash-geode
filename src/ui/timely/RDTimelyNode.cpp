@@ -107,7 +107,7 @@ bool RDTimelyNode::init(CCSize size, std::string id, float scale) {
     //     RDTimelyNode::setupLevelMenu(level);
     // } else {
     //     std::vector<int> downloadType = {-1, -2, -3};
-    //     GLM->downloadLevel(downloadType[levelType], false);
+    //     GLM->downloadLevel(downloadType[levelType], false, 0);
     //     m_loadingCircle->setVisible(true);
     //     m_bonusMenu->setVisible(false);
     // }
@@ -312,9 +312,12 @@ void RDTimelyNode::setupLevelMenu(GJGameLevel* level) {
     if (auto image = typeinfo_cast<CCImage*>(Variables::ThumbnailsDict->objectForKey(fmt::format("thumbnail-{}", level->m_levelID.value())))) {
         downloadThumbnailFinished(image);
     } else {
-        m_listener.bind([this] (web::WebTask::Event* e) {
-            if (web::WebResponse* res = e->getValue()) {
-                if (!res->ok()) {
+        // im just trying to get this to compile at this point. but i'm like 99% sure this code doesn't work anymore.
+        auto req = web::WebRequest();
+        m_listener.spawn(
+            req.get(fmt::format("https://raw.githubusercontent.com/cdc-sys/level-thumbnails/main/thumbs/{}.png", level->m_levelID.value())),
+            m_listener.bind([this] (WebResponse res) {
+                if (!res.ok() || res.code() != 200) {
                     downloadThumbnailFail();
                 } else {
                     auto data = res->data();
@@ -323,18 +326,15 @@ void RDTimelyNode::setupLevelMenu(GJGameLevel* level) {
                         image->autorelease();
                         image->initWithImageData(const_cast<uint8_t*>(data.data()), data.size());
                         Variables::ThumbnailsDict->setObject(image, fmt::format("thumbnail-{}", m_currentLevel->m_levelID.value()));
-
+                        
                         geode::Loader::get()->queueInMainThread([this, image](){
                             downloadThumbnailFinished(image);
                         });
                     });
                     thread.detach();
                 }
-            }
-        });
-
-        auto req = web::WebRequest();
-        m_listener.setFilter(req.get(fmt::format("https://raw.githubusercontent.com/cdc-sys/level-thumbnails/main/thumbs/{}.png", level->m_levelID.value())));
+            });
+        );
     }
 }
 

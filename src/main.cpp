@@ -232,7 +232,7 @@ class $modify(CrazyLayer, MenuLayer) {
 				Variables::GlobalRank = -1;
 			} else if (Variables::OldStarsCount != gsm->getStat("6")) {
 				Variables::GlobalRank = 0;
-				glm->getLeaderboardScores("leaderboard_global");
+				glm->getLeaderboardScores(LeaderboardType::Global, LeaderboardStat::Stars);
 			}
 		}
 

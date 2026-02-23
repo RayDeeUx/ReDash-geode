@@ -309,33 +309,73 @@ void RDTimelyNode::setupLevelMenu(GJGameLevel* level) {
     m_menu->addChild(starSprite, 8);
 
     // pretty much copied from the level thumbnails mod code lmao
-    if (auto image = typeinfo_cast<CCImage*>(Variables::ThumbnailsDict->objectForKey(fmt::format("thumbnail-{}", level->m_levelID.value())))) {
-        downloadThumbnailFinished(image);
-    } else {
-        // im just trying to get this to compile at this point. but i'm like 99% sure this code doesn't work anymore.
-        auto req = web::WebRequest();
-        m_listener.spawn(
-            req.get(fmt::format("https://raw.githubusercontent.com/cdc-sys/level-thumbnails/main/thumbs/{}.png", level->m_levelID.value())),
-            [this] (WebResponse res) {
-                if (!res.ok() || res.code() != 200) {
-                    downloadThumbnailFail();
-                } else {
-                    auto data = res->data();
-                    auto thread = std::thread([this, data]() {
-                        auto image = Ref(new CCImage());
-                        image->autorelease();
-                        image->initWithImageData(const_cast<uint8_t*>(data.data()), data.size());
-                        Variables::ThumbnailsDict->setObject(image, fmt::format("thumbnail-{}", m_currentLevel->m_levelID.value()));
+    // TODO: SWITCH TO https://levelthumbs.prevter.me/thumbnail/<LEVEL ID>/small AND USE LAZYSPRITE
+    // if (auto image = typeinfo_cast<CCImage*>(Variables::ThumbnailsDict->objectForKey(fmt::format("thumbnail-{}", level->m_levelID.value())))) {
+    //     downloadThumbnailFinished(image);
+    // } else {
+    //     im just trying to get this to compile at this point. but i'm like 99% sure this code doesn't work anymore.
+    //     auto req = web::WebRequest();
+    //     m_listener.spawn(
+    //         req.get(fmt::format("https://raw.githubusercontent.com/cdc-sys/level-thumbnails/main/thumbs/{}.png", level->m_levelID.value())),
+    //         [this] (WebResponse res) {
+    //             if (!res.ok() || res.code() != 200) {
+    //                 downloadThumbnailFail();
+    //             } else {
+    //                 auto data = res->data();
+    //                 auto thread = std::thread([this, data]() {
+    //                     auto image = Ref(new CCImage());
+    //                     image->autorelease();
+    //                     image->initWithImageData(const_cast<uint8_t*>(data.data()), data.size());
+    //                     Variables::ThumbnailsDict->setObject(image, fmt::format("thumbnail-{}", m_currentLevel->m_levelID.value()));
                         
-                        geode::Loader::get()->queueInMainThread([this, image](){
-                            downloadThumbnailFinished(image);
-                        });
-                    });
-                    thread.detach();
-                }
-            }
-        );
-    }
+    //                     geode::Loader::get()->queueInMainThread([this, image](){
+    //                         downloadThumbnailFinished(image);
+    //                     });
+    //                 });
+    //                 thread.detach();
+    //             }
+    //         }
+    //     );
+    // }
+    m_lazySprite = geode::Ref(LazySprite::create(m_innerBG->getScaledContentSize(), false));
+    m_lazySprite->setLoadCallback([this](const Result<>& result) {
+        if (result.isErr()) this->downloadThumbnailFail();
+		else this->downloadThumbnailFinishedModern();
+	});
+	m_lazySprite->loadFromUrl(fmt::format("https://levelthumbs.prevter.me/thumbnail/{}/small", level->m_levelID.value()));
+}
+
+void RDTimelyNode::downloadThumbnailFinishedModern() {
+    if (!m_mainNode || !m_menu) return;
+    
+    auto size = m_mainNode->getContentSize();
+
+    auto clippingNode = CCClippingNode::create();
+    clippingNode->setAnchorPoint({ 0.5f, 0.5f });
+    clippingNode->setPosition(m_innerBG->getPosition());
+    clippingNode->setContentSize(m_innerBG->getScaledContentSize());
+    clippingNode->setAlphaThreshold(0.03f);
+    clippingNode->setID("thumbnail-node");
+
+    auto stencil = CCScale9Sprite::create("square02b_001.png");
+    stencil->setScale(0.5f);
+    stencil->setPosition(clippingNode->getContentSize()/2);
+    stencil->setContentSize({ size.width*2 - 30.f, size.height / 1.16f });
+
+    m_lazySprite->setPosition(stencil->getPosition());
+    m_lazySprite->setScale(stencil->getScaledContentWidth() / m_lazySprite->getContentWidth());
+    m_lazySprite->setOpacity(0);
+
+    clippingNode->setStencil(stencil);
+    clippingNode->addChild(m_lazySprite);
+    m_menu->addChild(clippingNode, 0);
+    m_lazySprite->runAction(CCFadeIn::create(0.25f));
+
+    auto overlay = CCScale9Sprite::create("innerBG_overlay.png"_spr);
+    overlay->setPosition(m_innerBG->getPosition());
+    overlay->setScale(m_innerBG->getScale());
+    overlay->setContentSize(m_innerBG->getContentSize());
+    m_menu->addChild(overlay, 1);    
 }
 
 void RDTimelyNode::downloadThumbnailFinished(CCImage* image) {

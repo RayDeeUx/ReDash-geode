@@ -19,6 +19,7 @@
 		"source": "https://github.com/Weebifying/ReDash-geode"
 	},
 	"dependencies": {
+		"prevter.imageplus": ">=1.1.0",
 		"raydeeux.pages_api": ">=1.4.15"
 	},
 	"resources": {

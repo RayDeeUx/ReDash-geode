@@ -27,8 +27,8 @@ void RDWeeklyNode::updateTimeLabel(float time) {
     }
 }
 
-CCScale9Sprite* RDWeeklyNode::createBG(CCSize size, float scale) {
-    auto bg = CCScale9Sprite::create("GJ_square05.png");
+geode::NineSlice* RDWeeklyNode::createBG(CCSize size, float scale) {
+    auto bg = geode::NineSlice::create("GJ_square05.png");
     bg->setContentSize(size * scale);
     bg->setPosition(size*scale/2);
     bg->setID("background");

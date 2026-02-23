@@ -15,7 +15,7 @@ public:
     CCNode* m_mainNode;
     CCMenu* m_menu;
     CCMenu* m_bonusMenu;
-    CCScale9Sprite* m_innerBG;
+    geode::NineSlice* m_innerBG;
     CCLabelBMFont* m_timeLabel;
     CCLabelBMFont* m_timeLeftLabel;
     LoadingCircle* m_loadingCircle;
@@ -33,7 +33,7 @@ public:
     void downloadThumbnailFail();
 
     virtual bool init(CCSize size, std::string id, float scale);
-    virtual CCScale9Sprite* createBG(CCSize size, float scale) = 0;
+    virtual geode::NineSlice* createBG(CCSize size, float scale) = 0;
     virtual void onSkipLevel(CCObject* sender) = 0;
     virtual void onReload(CCObject* sender) = 0;
     virtual void onTheSafe(CCObject* sender) = 0;

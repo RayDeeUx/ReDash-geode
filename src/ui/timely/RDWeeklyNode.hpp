@@ -14,7 +14,7 @@ public:
     void updateTimeLabel(float time);
 
     virtual bool init(CCSize size, std::string id, float scale) override;
-    virtual CCScale9Sprite* createBG(CCSize size, float scale) override;
+    virtual geode::NineSlice* createBG(CCSize size, float scale) override;
     virtual void onSkipLevel(CCObject* sender) override;
     virtual void onReload(CCObject* sender) override;
     virtual void onTheSafe(CCObject* sender) override;

@@ -10,8 +10,8 @@ RDEventNode* RDEventNode::create(CCSize size, std::string id, float scale) {
     return nullptr;
 }
 
-CCScale9Sprite* RDEventNode::createBG(CCSize size, float scale) {
-    auto bg = CCScale9Sprite::create("GJ_square05.png");
+geode::NineSlice* RDEventNode::createBG(CCSize size, float scale) {
+    auto bg = geode::NineSlice::create("GJ_square05.png");
     bg->setContentSize(size * scale);
     bg->setPosition(size*scale/2);
     bg->setColor({ 200, 50, 255 });

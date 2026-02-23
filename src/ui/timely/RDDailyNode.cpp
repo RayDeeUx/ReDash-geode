@@ -33,8 +33,8 @@ int RDDailyNode::getBonusDiamonds() {
     return m_currentLevel->getAverageDifficulty();
 }
 
-CCScale9Sprite* RDDailyNode::createBG(CCSize size, float scale) {
-    auto bg = CCScale9Sprite::create("GJ_square01.png");
+geode::NineSlice* RDDailyNode::createBG(CCSize size, float scale) {
+    auto bg = geode::NineSlice::create("GJ_square01.png");
     bg->setContentSize(size * scale);
     bg->setPosition(size*scale/2);
     bg->setID("background");

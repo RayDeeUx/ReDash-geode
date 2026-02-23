@@ -29,7 +29,7 @@ public:
     
     void downloadLevelFailed();
     void downloadThumbnailFinished(CCImage* image);
-    void downloadThumbnailFinishedModern(geode::LazySprite* sprite);
+    void downloadThumbnailFinishedModern();
     void downloadThumbnailFail();
 
     virtual bool init(CCSize size, std::string id, float scale);

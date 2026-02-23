@@ -23,7 +23,7 @@
 #include <fmt/core.h>
 #include <Macros.hpp>
 
-#include <alphalaneous.pages_api/include/PageMenu.h>
+#include <raydeeux.pages_api/include/PageMenu.h>
 
 std::string getPathString(int n) {
 	switch (n) {

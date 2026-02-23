@@ -316,7 +316,7 @@ void RDTimelyNode::setupLevelMenu(GJGameLevel* level) {
         auto req = web::WebRequest();
         m_listener.spawn(
             req.get(fmt::format("https://raw.githubusercontent.com/cdc-sys/level-thumbnails/main/thumbs/{}.png", level->m_levelID.value())),
-            m_listener.bind([this] (WebResponse res) {
+            [this] (WebResponse res) {
                 if (!res.ok() || res.code() != 200) {
                     downloadThumbnailFail();
                 } else {
@@ -333,7 +333,7 @@ void RDTimelyNode::setupLevelMenu(GJGameLevel* level) {
                     });
                     thread.detach();
                 }
-            });
+            }
         );
     }
 }

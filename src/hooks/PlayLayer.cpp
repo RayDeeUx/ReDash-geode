@@ -24,6 +24,6 @@ class $modify(PlayLayer) {
     }
     // key shortcuts still go to 1st page (stereo madness) so do catch-all here
     void onPlay(CCObject* sender) {
-        RDMainButton::onPlay(sender);
+        RDMainButton::repeatedLogic();
     }
 };

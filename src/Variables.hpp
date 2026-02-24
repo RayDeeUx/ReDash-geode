@@ -31,4 +31,6 @@ namespace Variables {
     extern std::vector<ChallengesPage*> challengesPages;
 
     extern bool isFromRedash;
+
+    extern std::string LatestGauntlet;
 }

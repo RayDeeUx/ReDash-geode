@@ -667,6 +667,11 @@ class $modify(CrazyLayer, MenuLayer) {
 
 		return true;
 	}
+
+    // key shortcuts still go to 1st page (stereo madness) so do catch-all here
+    void onPlay(CCObject* sender) {
+        RDMainButton::repeatedLogic();
+    }
 };
 
 class $modify(test, ChallengesPage) {

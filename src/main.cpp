@@ -105,6 +105,7 @@ class $modify(CrazyLayer, MenuLayer) {
 		// }
 
 		// woke up. felt like doing some evil geode::Ref stuff for the giggles. Might delete later. --raydeeux
+		// ok this actually works so i won't be deleting it --raydeeux
 		if (Mod::get()->getSettingValue<bool>("texture-loader-button") && loader->isModLoaded("geode.texture-loader")) {
 			if (!Variables::PhantomTextureLoaderButton) {
 				if (auto videoOptionsLayer = VideoOptionsLayer::create(); videoOptionsLayer && videoOptionsLayer->m_buttonMenu && videoOptionsLayer->m_buttonMenu->getChildByID("geode.texture-loader/texture-loader-button") && typeinfo_cast<CCMenuItemSpriteExtra*>(videoOptionsLayer->m_buttonMenu->getChildByID("geode.texture-loader/texture-loader-button"))) {
@@ -112,7 +113,8 @@ class $modify(CrazyLayer, MenuLayer) {
 				}
 			}
 			if (Variables::PhantomTextureLoaderButton) {
-				rightMenu->addChild(Variables::PhantomTextureLoaderButton);
+				CCMenuItemSpriteExtra* newTextureFolder = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("gj_folderBtn_001.png"), this, Variables::PhantomTextureLoaderButton->m_pfnSelector);
+				rightMenu->addChild(newTextureFolder);
 			}
 		}
 

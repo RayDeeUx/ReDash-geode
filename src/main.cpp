@@ -80,7 +80,7 @@ class $modify(CrazyLayer, MenuLayer) {
 	};
 
 	static void onModify(auto& self) {
-		(void) self.setHookPriorityAfterPost("MenuLayer::init", "raydeeux.vanilla_pages");
+		(void) self.setHookPriorityAfterPost("MenuLayer::init", "alphalaneous.vanilla_pages");
 		(void) self.setHookPriorityAfterPost("MenuLayer::init", "devcmb.cleanermenu");
 	}
 

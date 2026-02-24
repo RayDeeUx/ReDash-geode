@@ -19,7 +19,7 @@ cocos2d::SEL_MenuHandler Variables::DifficultyProgressionSelector = nullptr;
 
 Ref<CreatorLayer> Variables::PhantomCreatorLayer = nullptr;
 
-Ref<CCMenuItemSpriteExtra> PhantomTextureLoaderButton = nullptr;
+Ref<CCMenuItemSpriteExtra> Variables::PhantomTextureLoaderButton = nullptr;
 
 Ref<cocos2d::CCDictionary> Variables::ThumbnailsDict = CCDictionary::create();
 

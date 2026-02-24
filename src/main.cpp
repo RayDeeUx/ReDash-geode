@@ -184,7 +184,7 @@ class $modify(CrazyLayer, MenuLayer) {
 		RD_ADD_CREATOR_BUTTON("gdsrwave.jfp", "gdsrwave.jfp/jfp-launch-button", Variables::JFPSelector, "RD_jfp.png"_spr);
 		RD_ADD_CREATOR_BUTTON("arcticwoof.rated_layouts", "arcticwoof.rated_layouts/rated-layouts-button", Variables::RatedLayoutsSelector, "RD_ratedlayouts.png"_spr);
 		RD_ADD_CREATOR_BUTTON("techstudent10.gdguesser", "techstudent10.gdguesser/start-btn", menu_selector(CrazyLayer::onBootlegGDGuesser), "RD_gdguesser.png"_spr);
-		RD_ADD_CREATOR_BUTTON("dogotrigger.level_progression", "dogotrigger.level_progression/difficulty-progression-button", Variables::DifficultyProgressionSelector, "dogotrigger.level_progression/dfbtn.png")
+		RD_ADD_CREATOR_BUTTON("dogotrigger.level_progression", "dogotrigger.level_progression/difficulty-progression-button", Variables::DifficultyProgressionSelector, "RD_diffprogression.png"_spr);
 
 		// devtools mobile button has been implemented, no need for this --raydeeux
 		// #ifdef GEODE_IS_MOBILE

@@ -23,6 +23,8 @@ namespace Variables {
 
     extern Ref<CreatorLayer> PhantomCreatorLayer;
 
+    extern Ref<CCMenuItemSpriteExtra> PhantomTextureLoaderButton;
+
     extern Ref<cocos2d::CCDictionary> ThumbnailsDict;
 
     extern bool didGetGJChallenge;

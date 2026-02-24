@@ -1,8 +1,10 @@
 #include "RDMainButton.hpp"
 
 void RDMainButton::onPlay(CCObject* sender) {
-    int page = Mod::get()->getSavedValue<int64_t>("last-main-level", 1);
-    if (page >= 5000 && page < 6000) page = 23;
+    constexpr int maxPageProbablyForTower = 23;
+    // clamp between 1 and maxPageProbablyForTower instead (discourage manual saved.json editing) --raydeeux
+    int page = std::clamp<int>(Mod::get()->getSavedValue<int64_t>("last-main-level", 1), 1, maxPageProbablyForTower);
+    // if (page >= 5000 && page < 6000) page = 23;
     if (!Mod::get()->getSettingValue<bool>("goto-last-played-main")) page = 1;
     auto sc = LevelSelectLayer::scene(page-1);
     CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f, sc));

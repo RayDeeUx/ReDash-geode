@@ -126,6 +126,12 @@
 			"type": "bool",
 			"description": "Use the alternative GDDP button texture if you have GDDP Integration installed.",
 			"default": false
+		},
+		"texture-loader-button": {
+			"name": "Texture Loader Button",
+			"type": "bool",
+			"description": "Adds the button for Texture Loader to the main menu. Requires Texture Loader by Geode Team installed.",
+			"default": false
 		}
 	}
 }

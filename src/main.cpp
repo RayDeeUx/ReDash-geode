@@ -105,10 +105,10 @@ class $modify(CrazyLayer, MenuLayer) {
 		// }
 
 		// woke up. felt like doing some evil geode::Ref stuff for the giggles. Might delete later. --raydeeux
-		if (Mod::get()->getSettingValue("texture-loader-button") && loader->isModLoaded("geode.texture-loader")) {
+		if (Mod::get()->getSettingValue<bool>("texture-loader-button") && loader->isModLoaded("geode.texture-loader")) {
 			if (!Variables::PhantomTextureLoaderButton) {
 				if (auto videoOptionsLayer = VideoOptionsLayer::create(); videoOptionsLayer && videoOptionsLayer->m_buttonMenu && videoOptionsLayer->m_buttonMenu->getChildByID("geode.texture-loader/texture-loader-button")) {
-					Variables::PhantomTextureLoaderButton = videoOptionsLayer->m_buttonMenu->getChildByID("geode.texture-loader/texture-loader-button");
+					Variables::PhantomTextureLoaderButton = Ref(videoOptionsLayer->m_buttonMenu->getChildByID("geode.texture-loader/texture-loader-button"));
 				}
 			}
 			if (Variables::PhantomTextureLoaderButton) {

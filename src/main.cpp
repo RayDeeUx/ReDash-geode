@@ -705,7 +705,7 @@ class $modify(test, ChallengesPage) {
 
 $on_mod(Loaded) {
 	auto req = web::WebRequest();
-	req.get("https://raw.githubusercontent.com/RayDeeUx/ReDash-geode/geode-v5/mod.json").listen,([](web::WebResponse* res) {
+	req.get("https://raw.githubusercontent.com/RayDeeUx/ReDash-geode/geode-v5/mod.json").listen([](web::WebResponse* res) {
 		if (!res->ok() || res->code() != 200) return;
 
 		auto resStr = res->string();

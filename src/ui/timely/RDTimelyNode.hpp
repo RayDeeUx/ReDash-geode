@@ -7,7 +7,8 @@ using namespace geode::prelude;
 
 class RDTimelyNode : public CCNode {
 public:
-    EventListener<web::WebTask> m_listener;
+    // EventListener<web::WebTask> m_listener;
+    geode::LazySprite* m_lazySprite;
 
     GJGameLevel* m_currentLevel;
 
@@ -28,6 +29,7 @@ public:
     
     void downloadLevelFailed();
     void downloadThumbnailFinished(CCImage* image);
+    void downloadThumbnailFinishedModern();
     void downloadThumbnailFail();
 
     virtual bool init(CCSize size, std::string id, float scale);

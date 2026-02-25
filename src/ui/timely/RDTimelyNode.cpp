@@ -309,33 +309,72 @@ void RDTimelyNode::setupLevelMenu(GJGameLevel* level) {
     m_menu->addChild(starSprite, 8);
 
     // pretty much copied from the level thumbnails mod code lmao
-    if (auto image = typeinfo_cast<CCImage*>(Variables::ThumbnailsDict->objectForKey(fmt::format("thumbnail-{}", level->m_levelID.value())))) {
-        downloadThumbnailFinished(image);
-    } else {
-        m_listener.bind([this] (web::WebTask::Event* e) {
-            if (web::WebResponse* res = e->getValue()) {
-                if (!res->ok()) {
-                    downloadThumbnailFail();
-                } else {
-                    auto data = res->data();
-                    auto thread = std::thread([this, data]() {
-                        auto image = Ref(new CCImage());
-                        image->autorelease();
-                        image->initWithImageData(const_cast<uint8_t*>(data.data()), data.size());
-                        Variables::ThumbnailsDict->setObject(image, fmt::format("thumbnail-{}", m_currentLevel->m_levelID.value()));
+    // if (auto image = typeinfo_cast<CCImage*>(Variables::ThumbnailsDict->objectForKey(fmt::format("thumbnail-{}", level->m_levelID.value())))) {
+    //     downloadThumbnailFinished(image);
+    // } else {
+    //     m_listener.bind([this] (web::WebTask::Event* e) {
+    //         if (web::WebResponse* res = e->getValue()) {
+    //             if (!res->ok()) {
+    //                 downloadThumbnailFail();
+    //             } else {
+    //                 auto data = res->data();
+    //                 auto thread = std::thread([this, data]() {
+    //                     auto image = Ref(new CCImage());
+    //                     image->autorelease();
+    //                     image->initWithImageData(const_cast<uint8_t*>(data.data()), data.size());
+    //                     Variables::ThumbnailsDict->setObject(image, fmt::format("thumbnail-{}", m_currentLevel->m_levelID.value()));
 
-                        geode::Loader::get()->queueInMainThread([this, image](){
-                            downloadThumbnailFinished(image);
-                        });
-                    });
-                    thread.detach();
-                }
-            }
-        });
+    //                     geode::Loader::get()->queueInMainThread([this, image](){
+    //                         downloadThumbnailFinished(image);
+    //                     });
+    //                 });
+    //                 thread.detach();
+    //             }
+    //         }
+    //     });
 
-        auto req = web::WebRequest();
-        m_listener.setFilter(req.get(fmt::format("https://raw.githubusercontent.com/cdc-sys/level-thumbnails/main/thumbs/{}.png", level->m_levelID.value())));
-    }
+    //     auto req = web::WebRequest();
+    //     m_listener.setFilter(req.get(fmt::format("https://raw.githubusercontent.com/cdc-sys/level-thumbnails/main/thumbs/{}.png", level->m_levelID.value())));
+
+    m_lazySprite = geode::Ref(LazySprite::create(m_innerBG->getScaledContentSize(), false));
+    m_lazySprite->setLoadCallback([this](const Result<>& result) {
+        if (result.isErr()) this->downloadThumbnailFail();
+        else this->downloadThumbnailFinishedModern();
+    });
+    m_lazySprite->loadFromUrl(fmt::format("https://levelthumbs.prevter.me/thumbnail/{}/small", level->m_levelID.value()));
+}
+
+void RDTimelyNode::downloadThumbnailFinishedModern() {
+    if (!m_mainNode || !m_menu) return;
+    
+    auto size = m_mainNode->getContentSize();
+
+    auto clippingNode = CCClippingNode::create();
+    clippingNode->setAnchorPoint({ 0.5f, 0.5f });
+    clippingNode->setPosition(m_innerBG->getPosition());
+    clippingNode->setContentSize(m_innerBG->getScaledContentSize());
+    clippingNode->setAlphaThreshold(0.03f);
+    clippingNode->setID("thumbnail-node");
+
+    auto stencil = geode::NineSlice::create("square02b_001.png");
+    stencil->setScale(0.5f);
+    stencil->setPosition(clippingNode->getContentSize()/2);
+    stencil->setContentSize({ size.width*2 - 30.f, size.height / 1.16f });
+
+    m_lazySprite->setPosition(stencil->getPosition());
+    m_lazySprite->setScale(stencil->getScaledContentWidth() / m_lazySprite->getContentWidth());
+    m_lazySprite->setOpacity(0);
+
+    clippingNode->setStencil(stencil);
+    clippingNode->addChild(m_lazySprite);
+    m_menu->addChild(clippingNode, 0);
+    m_lazySprite->runAction(CCFadeIn::create(0.25f));
+
+    auto overlay = geode::NineSlice::create("innerBG_overlay.png"_spr);
+    overlay->setPosition(m_innerBG->getPosition());
+    overlay->setScale(m_innerBG->getScale());
+    overlay->setContentSize(m_innerBG->getContentSize());
+    m_menu->addChild(overlay, 1);    
 }
 
 void RDTimelyNode::downloadThumbnailFinished(CCImage* image) {

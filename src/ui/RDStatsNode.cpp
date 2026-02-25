@@ -4,7 +4,7 @@ bool RDStatsNode::init(std::string sprite, std::string string, std::string id) {
     if (!CCNode::init()) return false;
 
     float zilkoPleaseShutTheFuckUp = 0.f;
-    if (sprite == "GJ_coinsIcon_001.png") zilkoPleaseShutTheFuckUp = 2.5f;
+    if (sprite == "GJ_coinsIcon_001.png") zilkoPleaseShutTheFuckUp = 5.f;
 
     auto icon = CCSprite::createWithSpriteFrameName(sprite.c_str());
     icon->setPosition({ 0, 2.f });

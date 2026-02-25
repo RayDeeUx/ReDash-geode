@@ -563,9 +563,10 @@ class $modify(CrazyLayer, MenuLayer) {
 		);
 		m_fields->m_bottomMenu = menuButUnder;
 
-		if (!Mod::get()->getSettingValue<bool>("disable-creator-button")) {
+		bool addCreatorButton = !Mod::get()->getSettingValue<bool>("disable-creator-button");
+		if (addCreatorButton) {
 			auto creatorSpr = CCSprite::createWithSpriteFrameName("GJ_creatorBtn_001.png");
-			creatorSpr->setScale(0.9f);
+			creatorSpr->setScale(0.75f);
 			auto creatorBtn = CCMenuItemSpriteExtra::create(creatorSpr, this, menu_selector(MenuLayer::onCreator));
 			creatorBtn->setID("creator-layer-button");
 			menuButUnder->addChild(creatorBtn);
@@ -574,7 +575,7 @@ class $modify(CrazyLayer, MenuLayer) {
 			rightMenu->setPositionX(rightMenu->getPositionX() - 25);
 		}
 		auto treasureSpr = CCSprite::createWithSpriteFrameName(gm->getUGV("5") ? "secretDoorBtn_open_001.png" : "secretDoorBtn_closed_001.png");
-		treasureSpr->setScale(1.25f * gm->getUGV("5") ? 140.f / 230.f : 1.f);
+		treasureSpr->setScale(1.25f * ((gm->getUGV("5") && addCreatorButton) ? 200.f / 230.f : 1.f));
 		auto treasureBtn = CCMenuItemSpriteExtra::create(treasureSpr, this, menu_selector(CreatorLayer::onTreasureRoom));
 		treasureBtn->setID("treasure-room-button");
 		menuButUnder->addChild(treasureBtn);

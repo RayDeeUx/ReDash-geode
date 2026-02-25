@@ -336,8 +336,10 @@ void RDTimelyNode::setupLevelMenu(GJGameLevel* level) {
     //     auto req = web::WebRequest();
     //     m_listener.setFilter(req.get(fmt::format("https://raw.githubusercontent.com/cdc-sys/level-thumbnails/main/thumbs/{}.png", level->m_levelID.value())));
 
+    geode::log::info("m_lazySprite is a meanie");
     m_lazySprite = geode::Ref(LazySprite::create(m_innerBG->getScaledContentSize(), false));
     m_lazySprite->setLoadCallback([this](const Result<>& result) {
+        geode::log::info("m_lazySprite is a meanie (lambda)");
         if (result.isErr()) this->downloadThumbnailFail();
         else this->downloadThumbnailFinishedModern();
     });
@@ -345,8 +347,10 @@ void RDTimelyNode::setupLevelMenu(GJGameLevel* level) {
 }
 
 void RDTimelyNode::downloadThumbnailFinishedModern() {
-    if (!m_mainNode || !m_menu) return;
-    
+    if (!m_mainNode || !m_menu) return geode::log::info("downloadThumbnailFinishedModern early return");
+   
+    geode::log::info("m_lazySprite is a meanie (inside downloadThumbnailFinishedModern)");
+
     auto size = m_mainNode->getContentSize();
 
     auto clippingNode = CCClippingNode::create();
@@ -418,6 +422,7 @@ void RDTimelyNode::downloadThumbnailFinished(CCImage* image) {
 void RDTimelyNode::downloadThumbnailFail() {
     auto failSprite = CCSprite::createWithSpriteFrameName("GJ_deleteIcon_001.png");
     failSprite->setScale(0.35f);
+    failSprite->setID("HAHA-EPIC-FAIL");
     failSprite->setPosition(m_innerBG->getPosition() + m_innerBG->getScaledContentSize()/2 - failSprite->getScaledContentSize()/2 - ccp(2.f, 2.f));
     m_menu->addChild(failSprite);
 }

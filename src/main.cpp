@@ -701,3 +701,34 @@ class $modify(test, ChallengesPage) {
 		}
 	}
 };
+
+$on_mod(Loaded) {
+	async::TaskHolder<geode::utils::web::WebResponse> listener;
+
+	auto req = web::WebRequest();
+	listener.spawn(
+		req.get("https://raw.githubusercontent.com/RayDeeUx/ReDash-geode/geode-v5/mod.json"),
+		[this](WebResponse res) {
+			if (!res.ok() || res.code() != 200) return;
+
+			auto resStr = res.string();
+			if (resStr.isErr()) return;
+
+			std::string str = resStr.unwrap();
+			if (str.empty()) return;
+
+			auto parsedJson = matjson::parse(str);
+			if (parsedJson.isErr());
+
+			auto json = parsedJson.unwrap();
+			if (!json.contains("latestGauntlet")) return;
+
+			auto dataConfirmed = json["latestGauntlet"];
+
+			auto unwrappedGauntlet = dataConfirmed.asString();
+			if (unwrappedGauntlet.isErr()) return;
+
+			Variables::LatestGauntlet = unwrappedGauntlet.unwrap();
+		}
+	);
+}

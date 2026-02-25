@@ -61,6 +61,6 @@ void MainButtonsSettingV3::reset() {
     markChanged();
 }
 
-$execute {
+$on_mod(Loaded) {
     (void) Mod::get()->registerCustomSettingType("main-buttons-selection", &MainButtonsSettingV3::parse);
 }

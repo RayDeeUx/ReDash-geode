@@ -67,6 +67,6 @@ void StatsSettingV3::reset() {
     markChanged();
 }
 
-$execute {
+$on_mod(Loaded) {
     (void) Mod::get()->registerCustomSettingType("stats-nodes-selection", &StatsSettingV3::parse);
 }

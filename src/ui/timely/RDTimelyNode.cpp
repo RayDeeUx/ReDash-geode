@@ -336,13 +336,13 @@ void RDTimelyNode::setupLevelMenu(GJGameLevel* level) {
     //     auto req = web::WebRequest();
     //     m_listener.setFilter(req.get(fmt::format("https://raw.githubusercontent.com/cdc-sys/level-thumbnails/main/thumbs/{}.png", level->m_levelID.value())));
 
-    geode::log::info("m_lazySprite is a meanie");
     m_lazySprite = geode::Ref(LazySprite::create(m_innerBG->getScaledContentSize(), false));
     m_lazySprite->setLoadCallback([this](const Result<>& result) {
         geode::log::info("m_lazySprite is a meanie (lambda)");
         if (result.isErr()) this->downloadThumbnailFail();
         else this->downloadThumbnailFinishedModern();
     });
+    geode::log::info("m_lazySprite is a meanie: {}", fmt::format("https://levelthumbs.prevter.me/thumbnail/{}/small", level->m_levelID.value()));
     m_lazySprite->loadFromUrl(fmt::format("https://levelthumbs.prevter.me/thumbnail/{}/small", level->m_levelID.value()));
 }
 

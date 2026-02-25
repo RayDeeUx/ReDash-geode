@@ -8,7 +8,7 @@ using namespace geode::prelude;
 class RDTimelyNode : public CCNode {
 public:
     // EventListener<web::WebTask> m_listener;
-    geode::LazySprite* m_lazySprite;
+    geode::Ref<geode::LazySprite> m_lazySprite;
 
     GJGameLevel* m_currentLevel;
 

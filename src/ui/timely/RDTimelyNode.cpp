@@ -356,7 +356,7 @@ void RDTimelyNode::downloadThumbnailFinishedModern() {
     clippingNode->setAlphaThreshold(0.03f);
     clippingNode->setID("thumbnail-node");
 
-    auto stencil = geode::NineSlice::create("square02b_001.png");
+    auto stencil = CCScale9Sprite::create("square02b_001.png");
     stencil->setScale(0.5f);
     stencil->setPosition(clippingNode->getContentSize()/2);
     stencil->setContentSize({ size.width*2 - 30.f, size.height / 1.16f });
@@ -370,7 +370,7 @@ void RDTimelyNode::downloadThumbnailFinishedModern() {
     m_menu->addChild(clippingNode, 0);
     m_lazySprite->runAction(CCFadeIn::create(0.25f));
 
-    auto overlay = geode::NineSlice::create("innerBG_overlay.png"_spr);
+    auto overlay = CCScale9Sprite::create("innerBG_overlay.png"_spr);
     overlay->setPosition(m_innerBG->getPosition());
     overlay->setScale(m_innerBG->getScale());
     overlay->setContentSize(m_innerBG->getContentSize());

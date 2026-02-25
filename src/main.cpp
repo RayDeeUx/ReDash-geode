@@ -708,7 +708,7 @@ $on_mod(Loaded) {
 	auto req = web::WebRequest();
 	listener.spawn(
 		req.get("https://raw.githubusercontent.com/RayDeeUx/ReDash-geode/geode-v5/mod.json"),
-		[this](WebResponse res) {
+		[]geode::utils::web::WebResponse res) {
 			if (!res.ok() || res.code() != 200) return;
 
 			auto resStr = res.string();

@@ -549,8 +549,8 @@ class $modify(CrazyLayer, MenuLayer) {
 		auto menuButUnder = CCMenu::create();
 		menuButUnder->setID("bottom-menu"_spr);
 		menuButUnder->setAnchorPoint({ 1.f, 0.5f });
-		menuButUnder->setContentSize({ 150.f, 48.25f });
-		menuButUnder->setPosition({ winSize.width - 124.f, 25.f }); // ...
+		menuButUnder->setContentSize({ 115.f, 48.25f });
+		menuButUnder->setPosition({ winSize.width - 124.f, 25.f });
 		auto bottomX = winSize.width - 124.f;
 		menuButUnder->setScale(0.75f);
 		menuButUnder->setLayout(

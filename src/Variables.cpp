@@ -28,4 +28,4 @@ std::vector<ChallengesPage*> Variables::challengesPages = {};
 
 bool Variables::isFromRedash = false;
 
-std::string Variables::LatestGauntlet = "Love";
+std::string Variables::LatestGauntlet = "Force";

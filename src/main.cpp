@@ -303,6 +303,26 @@ class $modify(CrazyLayer, MenuLayer) {
 		bottomMenu->setZOrder(1);
 		static_cast<PageMenu*>(bottomMenu)->setPaged(5, PageOrientation::VERTICAL, bottomMenu->getContentHeight() - 2, -13);
 
+		auto sideMenu = this->getChildByID("side-menu");
+		if (sideMenu) {
+			for (CCNode* node : sideMenu->getChildrenExt()) {
+				if (!node) continue;
+				node->removeFromParent();
+				bottomMenu->addChild(node);
+			}
+		}
+
+		auto topRightMenu = this->getChildByID("top-right-menu");
+		if (topRightMenu) {
+			for (CCNode* node : topRightMenu->getChildrenExt()) {
+				if (!node) continue;
+				node->removeFromParent();
+				bottomMenu->addChild(node);
+			}
+		}
+
+		bottomMenu->updateLayout();
+
 		auto rightMenu = this->getChildByID("right-side-menu");
 		rightMenu->setPosition(ccp(157.5f, 25.f));
 		rightMenu->setScale(0.75f);

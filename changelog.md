@@ -1,7 +1,11 @@
 # Overcharged Main Menu Changelog
 ## v1.2.1
 - GD 2.2081 support
-- Bugfixes...
+- Switch to new Level Thumbnails endpoint to show thumbnails for daily/weekly/event levels
+- Fix overlap issues in some screens by switching to `geode::NineSlice`
+- Force pagination on menus
+- Bugfixes and futureproofing...
+- Removed Herobrine's attempts to "Plus-ify" the main menu
 ## v1.2.0
 - GD 2.2074 support
 - Events levels support

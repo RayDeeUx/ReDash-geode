@@ -706,29 +706,27 @@ $on_mod(Loaded) {
 	async::TaskHolder<geode::utils::web::WebResponse> listener;
 
 	auto req = web::WebRequest();
-	listener.spawn(
-		req.get("https://raw.githubusercontent.com/RayDeeUx/ReDash-geode/geode-v5/mod.json"),
-		[](geode::utils::web::WebResponse res) {
-			if (!res.ok() || res.code() != 200) return;
+	req.get("https://raw.githubusercontent.com/RayDeeUx/ReDash-geode/geode-v5/mod.json").listen,([](web::WebResponse* res) {
+		if (!res->ok() || res->code() != 200) return;
 
-			auto resStr = res.string();
-			if (resStr.isErr()) return;
+		auto resStr = res->string();
+		if (resStr.isErr()) return;
 
-			std::string str = resStr.unwrap();
-			if (str.empty()) return;
+		std::string str = resStr.unwrap();
+		if (str.empty()) return;
 
-			auto parsedJson = matjson::parse(str);
-			if (parsedJson.isErr()) return;
+		auto parsedJson = matjson::parse(str);
+		if (parsedJson.isErr()) return;
 
-			auto json = parsedJson.unwrap();
-			if (!json.contains("latestGauntlet")) return;
+		auto json = parsedJson.unwrap();
+		if (!json.contains("latestGauntlet")) return;
 
-			auto dataConfirmed = json["latestGauntlet"];
+		auto dataConfirmed = json["latestGauntlet"];
 
-			auto unwrappedGauntlet = dataConfirmed.asString();
-			if (unwrappedGauntlet.isErr()) return;
+		auto unwrappedGauntlet = dataConfirmed.asString();
+		if (unwrappedGauntlet.isErr()) return;
 
-			Variables::LatestGauntlet = unwrappedGauntlet.unwrap();
+		Variables::LatestGauntlet = unwrappedGauntlet.unwrap();
 		}
 	);
 }

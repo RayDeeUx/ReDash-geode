@@ -704,8 +704,6 @@ class $modify(test, ChallengesPage) {
 };
 
 $on_mod(Loaded) {
-	async::TaskHolder<geode::utils::web::WebResponse> listener;
-
 	auto req = web::WebRequest();
 	req.get("https://raw.githubusercontent.com/RayDeeUx/ReDash-geode/geode-v5/mod.json").listen,([](web::WebResponse* res) {
 		if (!res->ok() || res->code() != 200) return;

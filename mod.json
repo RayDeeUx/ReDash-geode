@@ -15,6 +15,7 @@
 	],
 	"description": "Geometry Dash if it was a flashy mobile game.",
 	"tags": ["interface"],
+	"latestGauntlet": "Love",
 	"links": {
 		"source": "https://github.com/Weebifying/ReDash-geode"
 	},

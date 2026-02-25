@@ -3,6 +3,9 @@
 bool RDStatsNode::init(std::string sprite, std::string string, std::string id) {
     if (!CCNode::init()) return false;
 
+    float zilkoPleaseShutTheFuckUp = 0.f;
+    if (sprite == "GJ_coinsIcon_001.png") zilkoPleaseShutTheFuckUp = 2.5f;
+
     auto icon = CCSprite::createWithSpriteFrameName(sprite.c_str());
     icon->setPosition({ 0, 2.f });
     icon->setScale(1.5f);
@@ -41,7 +44,7 @@ bool RDStatsNode::init(std::string sprite, std::string string, std::string id) {
     bg1->setScale(0.8f);
     bg1->setColor({ 0, 0, 0 });
     bg1->setOpacity(125);
-    bg1->setContentSize({ icon->getScaledContentWidth() + label->getScaledContentWidth(), 30.f });
+    bg1->setContentSize({ icon->getScaledContentWidth() + label->getScaledContentWidth() + zilkoPleaseShutTheFuckUp, 30.f });
     bg1->setPosition(bg0->getPositionX(), bg0->getPositionY());
     this->addChild(bg1, 0);
 

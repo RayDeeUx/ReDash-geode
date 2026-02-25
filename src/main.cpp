@@ -718,7 +718,7 @@ $on_mod(Loaded) {
 			if (str.empty()) return;
 
 			auto parsedJson = matjson::parse(str);
-			if (parsedJson.isErr());
+			if (parsedJson.isErr()) return;
 
 			auto json = parsedJson.unwrap();
 			if (!json.contains("latestGauntlet")) return;

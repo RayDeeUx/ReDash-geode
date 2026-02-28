@@ -6,7 +6,7 @@
 		"ios": "2.2081",
 		"android": "2.2081"
 	},
-	"version": "v1.2.1",
+	"version": "v1.2.2",
 	"id": "ninxout.redash",
 	"name": "Overcharged Main Menu",
 	"developers": [
@@ -116,6 +116,12 @@
 			"name": "Miscellaneous Settings",
 			"type": "title",
 			"description": "These settings allow you to customize the miscellaneous features of this mod."
+		},
+		"leaderboard-check": {
+			"name": "Leaderboards Check",
+			"type": "bool",
+			"description": "Sends a request to fetch your leaderboard position. Defaulted to false since RobTop's changes in 2.2081 made things much slower.",
+			"default": false
 		},
 		"events-check": {
 			"name": "Events Frequent Check",

@@ -243,9 +243,11 @@ class $modify(CrazyLayer, MenuLayer) {
 		if (!Mod::get()->getSettingValue<bool>("hide-bottom-buttons-texts")) {
 			if (GJAccountManager::get()->m_accountID == 0) {
 				Variables::GlobalRank = -1;
-			} else if (Variables::OldStarsCount != gsm->getStat("6")) {
+			} else if (Variables::OldStarsCount != gsm->getStat("6") && Mod::get()->getSettingValue<bool>("leaderboard-check")) {
 				Variables::GlobalRank = 0;
 				glm->getLeaderboardScores(LeaderboardType::Global, LeaderboardStat::Stars);
+			} else {
+				Variables::GlobalRank = -1;
 			}
 		}
 
@@ -419,7 +421,7 @@ class $modify(CrazyLayer, MenuLayer) {
 			{"create-button", RDButtonData("RD_createLabel.png"_spr, {"You have", fmt::format("{} Levels", abbreviateNumber(LocalLevelManager::get()->m_localLevels->count())).c_str()}, "RD_create.png"_spr, 0.95f, menu_selector(CreatorLayer::onMyLevels))},
 			{"saved-button", RDButtonData("RD_savedLabel.png"_spr, {"You have", fmt::format("{} Saved", abbreviateNumber(glm->getSavedLevels(false, 0)->count())), "Levels"}, "RD_saved.png"_spr, 0.95f, menu_selector(CreatorLayer::onSavedLevels))},
 			{"paths-button", RDButtonData("RD_pathsLabel.png"_spr, {getPathString(activePath - 29), fmt::format("{}/1000", pathProgress)}, "RD_paths.png"_spr, 0.8f, menu_selector(CreatorLayer::onPaths))},
-			{"leaderboards-button", RDButtonData("RD_leaderboardsLabel.png"_spr, {"Global", fmt::format("#{}", Variables::GlobalRank)}, "RD_leaderboards.png"_spr, 0.85f, menu_selector(CreatorLayer::onLeaderboards))},
+			{"leaderboards-button", RDButtonData("RD_leaderboardsLabel.png"_spr, Mod::get()->getSettingValue<bool>("leaderboard-check") ? {"Global", fmt::format("#{}", Variables::GlobalRank)} ? {"View your", "Global position"}, "RD_leaderboards.png"_spr, 0.85f, menu_selector(CreatorLayer::onLeaderboards))},
 			{"gauntlets-button", RDButtonData("RD_gauntletsLabel.png"_spr, {Variables::LatestGauntlet, "Gauntlet", "Added"}, "RD_gauntlets.png"_spr, 1.f, menu_selector(CreatorLayer::onGauntlets))},
 			{"featured-button", RDButtonData("RD_featuredLabel.png"_spr, {"Play new", "Featured", "levels"}, "RD_featured.png"_spr, 0.95f, menu_selector(CreatorLayer::onFeaturedLevels))},
 			{"lists-button", RDButtonData("RD_listsLabel.png"_spr, {"Play rated", "Lists"}, "RD_lists.png"_spr, 1.f, menu_selector(CreatorLayer::onTopLists))},

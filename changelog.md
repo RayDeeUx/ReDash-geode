@@ -1,4 +1,6 @@
 # Overcharged Main Menu Changelog
+## v1.2.2
+- Quick bugfix to disable leaderboard position fetching
 ## v1.2.1
 - GD 2.2081 support
 - Switch to new Level Thumbnails endpoint to show thumbnails for daily/weekly/event levels

@@ -99,7 +99,7 @@ bool RDButton::init(CCObject* target, std::string title, std::vector<std::string
 			} else if (Variables::GlobalRank == -1) {
 				if (!Mod::get()->getSettingValue<bool>("leaderboard-check")) {
 					static_cast<CCLabelBMFont*>(labelMenu->getChildByID("desc-label-1"))->setString("View your");
-					static_cast<CCLabelBMFont*>(labelMenu->getChildByID("desc-label-2"))->setString("Global position");
+					static_cast<CCLabelBMFont*>(labelMenu->getChildByID("desc-label-2"))->setString("Position");
 				} else {
 					static_cast<CCLabelBMFont*>(labelMenu->getChildByID("desc-label-2"))->setString("None");
 				}

@@ -123,8 +123,8 @@ class $modify(CrazyLayer, MenuLayer) {
 				auto cls_spr = CCSprite::createWithSpriteFrameName("GJ_closeBtn_001.png");
 				cls_spr->setScale(0.7);
 				auto cls_btn = CCMenuItemSpriteExtra::create(
-					cls_spr, 
-					this, 
+					cls_spr,
+					this,
 					menu_selector(MenuLayer::onQuit));
 				cls_btn->setID("close-button");
 				closeMenu->addChild(cls_btn);
@@ -230,7 +230,7 @@ class $modify(CrazyLayer, MenuLayer) {
 		auto glm = GameLevelManager::sharedState();
 		auto gm = GameManager::sharedState();
 		auto winSize = CCDirector::sharedDirector()->getWinSize();
-		
+
 		if (Variables::WeeklyLeft < 1) {
 			glm->getGJDailyLevelState(GJTimedLevelType::Weekly);
 		}
@@ -239,10 +239,10 @@ class $modify(CrazyLayer, MenuLayer) {
 		}
 		if (Variables::EventLeft < 1) {
 			glm->getGJDailyLevelState(GJTimedLevelType::Event);
-		}		
+		}
 
 		if (!Mod::get()->getSettingValue<bool>("hide-bottom-buttons-texts")) {
-			if (GJAccountManager::get()->m_accountID == 0) {
+			if (!Mod::get()->getSettingValue<bool>("leaderboard-check") || GJAccountManager::get()->m_accountID == 0) {
 				Variables::GlobalRank = -1;
 			} else if (Variables::OldStarsCount != gsm->getStat("6")) {
 				Variables::GlobalRank = 0;
@@ -250,7 +250,7 @@ class $modify(CrazyLayer, MenuLayer) {
 			}
 		}
 
-		CrazyLayer::setupButtons();		
+		CrazyLayer::setupButtons();
 
 		// MAIN MENU CHANGES (MIGHT BE BREAKING SOME STUFF) - ninXout
 		// no it ain't - Weebify
@@ -465,12 +465,12 @@ class $modify(CrazyLayer, MenuLayer) {
 			piVar2->setPosition(m_fields->m_questBtn->getContentSize() - ccp(4,8));
 			piVar2->setID("quest-notif"_spr);
 			m_fields->m_questBtn->addChild(piVar2, 1);
-			
+
 			if (questsCompleted > 0) {
 				piVar2->setVisible(true);
 			}
 		}
-		
+
 		mainMenu->updateLayout();
 		menu->addChild(mainMenu);
 
@@ -676,7 +676,7 @@ class $modify(CrazyLayer, MenuLayer) {
 				// bottomMenu->setUserObject("orientation", CCInteger::create(0)); // VERTICAL
 				// bottomMenu->setUserObject("element-count", CCInteger::create(5));
 			// }
-			
+
 			// if (pagesMod->getSettingValue<bool>("menulayer-right-menu")) {
 				// rightMenu->setLayout(static_cast<RowLayout*>(rightMenu->getLayout())->setAutoScale(false)->setAxisAlignment(AxisAlignment::Center));
 				rightMenu->setScale(0.95);

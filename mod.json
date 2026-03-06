@@ -59,6 +59,21 @@
 			"breaking": true,
 			"hiddenCommentThatGeodeLoaderWillNotReadButHumansHopefullyMight": "Potentially rearranges MenuLayer node tree. The source code for this one's a real pain for anyone to read: inconsistent variable conventions, broken function lambdas, and probably a missing nullptr check here or there."
 		},
+		"muhammadgames.reforgedmenu": {
+			"version": ">=1.0.0",
+			"breaking": true,
+			"hiddenCommentThatGeodeLoaderWillNotReadButHumansHopefullyMight": "Potentially rearranges MenuLayer node tree. The source code for this one's a real pain for anyone to read: inconsistent variable conventions, broken function lambdas, and probably a missing nullptr check here or there."
+		},
+		"muhammadgames.reforged_menu": {
+			"version": ">=1.0.0",
+			"breaking": true,
+			"hiddenCommentThatGeodeLoaderWillNotReadButHumansHopefullyMight": "Potentially rearranges MenuLayer node tree. The source code for this one's a real pain for anyone to read: inconsistent variable conventions, broken function lambdas, and probably a missing nullptr check here or there."
+		},
+		"muhammadgames.reforged-menu": {
+			"version": ">=1.0.0",
+			"breaking": true,
+			"hiddenCommentThatGeodeLoaderWillNotReadButHumansHopefullyMight": "Potentially rearranges MenuLayer node tree. The source code for this one's a real pain for anyone to read: inconsistent variable conventions, broken function lambdas, and probably a missing nullptr check here or there."
+		},
 		"viper.reforgedmenu": {
 			"version": ">=1.0.0",
 			"breaking": true,

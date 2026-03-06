@@ -1,4 +1,6 @@
 # Overcharged Main Menu Changelog
+## v1.2.3
+- Removed more of Herobrine's attempts to "Reforge-ify" the main menu with a burning dumpster fire's worth of poorly written C++
 ## v1.2.2
 - Quick bugfix to disable leaderboard position fetching
 ## v1.2.1

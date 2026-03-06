@@ -6,7 +6,7 @@
 		"ios": "2.2081",
 		"android": "2.2081"
 	},
-	"version": "v1.2.2",
+	"version": "v1.2.3",
 	"id": "ninxout.redash",
 	"name": "Overcharged Main Menu",
 	"developers": [
@@ -28,6 +28,26 @@
 			"version": ">=1.0.0",
 			"breaking": true,
 			"hiddenCommentThatGeodeLoaderWillNotReadButHumansHopefullyMight": "Breaks both bottom and right menus by moving them off-screen. Also overrides the page button dimensions already set by this mod."
+		},
+		"muhammadgames.bettermenu": {
+			"version": ">=1.0.0",
+			"breaking": true,
+			"hiddenCommentThatGeodeLoaderWillNotReadButHumansHopefullyMight": "Potentially rearranges MenuLayer node tree. The source code for this one's a real pain for anyone to read: inconsistent variable conventions, broken function lambdas, and probably a missing nullptr check here or there."
+		},
+		"viper.bettermenu": {
+			"version": ">=1.0.0",
+			"breaking": true,
+			"hiddenCommentThatGeodeLoaderWillNotReadButHumansHopefullyMight": "Potentially rearranges MenuLayer node tree. The source code for this one's a real pain for anyone to read: inconsistent variable conventions, broken function lambdas, and probably a missing nullptr check here or there."
+		},
+		"viper.reforged_menu": {
+			"version": ">=1.0.0",
+			"breaking": true,
+			"hiddenCommentThatGeodeLoaderWillNotReadButHumansHopefullyMight": "Potentially rearranges MenuLayer node tree. The source code for this one's a real pain for anyone to read: inconsistent variable conventions, broken function lambdas, and probably a missing nullptr check here or there."
+		},
+		"viper.reforgedmenu": {
+			"version": ">=1.0.0",
+			"breaking": true,
+			"hiddenCommentThatGeodeLoaderWillNotReadButHumansHopefullyMight": "Potentially rearranges MenuLayer node tree. The source code for this one's a real pain for anyone to read: inconsistent variable conventions, broken function lambdas, and probably a missing nullptr check here or there."
 		}
 	},
 	"resources": {
